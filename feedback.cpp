@@ -11,13 +11,11 @@ void feedback(std::vector<Process> processes) {
     if (n == 0) { std::cout << "No processes.\n"; return; }
 
     for (auto &p : processes) p.remaining = p.burst;
-
-    // 3-level feedback queues: q[0] highest priority
+    
     std::vector<std::queue<int>> q(3);
     std::vector<bool> inQueue(n, false);
-    const int tq0 = 2, tq1 = 4; // quantums
+    const int tq0 = 2, tq1 = 4; 
 
-    // sort by arrival order
     std::vector<int> order(n);
     for (int i = 0; i < n; ++i) order[i] = i;
     std::sort(order.begin(), order.end(), [&](int a, int b){
@@ -29,7 +27,6 @@ void feedback(std::vector<Process> processes) {
     std::vector<GanttEntry> chart;
 
     while (completed < n) {
-        // push arrivals into highest queue
         while (oi < n && processes[order[oi]].arrival <= time) {
             int idx = order[oi++];
             q[0].push(idx);
@@ -42,7 +39,6 @@ void feedback(std::vector<Process> processes) {
         else if (!q[1].empty()) { idx = q[1].front(); q[1].pop(); level = 1; }
         else if (!q[2].empty()) { idx = q[2].front(); q[2].pop(); level = 2; }
         else {
-            // nothing ready: advance time
             if (oi < n) time = processes[order[oi]].arrival;
             else ++time;
             continue;
@@ -52,7 +48,7 @@ void feedback(std::vector<Process> processes) {
             int exec = std::min(tq0, processes[idx].remaining);
             int start = time; time += exec; processes[idx].remaining -= exec;
             chart.push_back({processes[idx].pid, start, time});
-            // new arrivals during exec
+
             while (oi < n && processes[order[oi]].arrival <= time) {
                 int j = order[oi++]; q[0].push(j); inQueue[j] = true;
             }
@@ -77,7 +73,7 @@ void feedback(std::vector<Process> processes) {
                 processes[idx].waiting = processes[idx].turnaround - processes[idx].burst;
                 ++completed;
             }
-        } else { // level == 2 -> FCFS to completion
+        } else {
             int start = time; time += processes[idx].remaining; processes[idx].remaining = 0;
             chart.push_back({processes[idx].pid, start, time});
             while (oi < n && processes[order[oi]].arrival <= time) {
