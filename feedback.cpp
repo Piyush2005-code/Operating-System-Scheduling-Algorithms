@@ -38,13 +38,13 @@ void feedback(std::vector<Process> processes) {
         if (!q[0].empty()) { idx = q[0].front(); q[0].pop(); level = 0; }
         else if (!q[1].empty()) { idx = q[1].front(); q[1].pop(); level = 1; }
         else if (!q[2].empty()) { idx = q[2].front(); q[2].pop(); level = 2; }
-        else {
+        else{
             if (oi < n) time = processes[order[oi]].arrival;
             else ++time;
             continue;
         }
 
-        if (level == 0) {
+        if(level == 0) {
             int exec = std::min(tq0, processes[idx].remaining);
             int start = time; time += exec; processes[idx].remaining -= exec;
             chart.push_back({processes[idx].pid, start, time});
@@ -59,7 +59,8 @@ void feedback(std::vector<Process> processes) {
                 processes[idx].waiting = processes[idx].turnaround - processes[idx].burst;
                 ++completed;
             }
-        } else if (level == 1) {
+        } 
+        else if(level == 1) {
             int exec = std::min(tq1, processes[idx].remaining);
             int start = time; time += exec; processes[idx].remaining -= exec;
             chart.push_back({processes[idx].pid, start, time});
@@ -73,7 +74,8 @@ void feedback(std::vector<Process> processes) {
                 processes[idx].waiting = processes[idx].turnaround - processes[idx].burst;
                 ++completed;
             }
-        } else {
+        } 
+        else{
             int start = time; time += processes[idx].remaining; processes[idx].remaining = 0;
             chart.push_back({processes[idx].pid, start, time});
             while (oi < n && processes[order[oi]].arrival <= time) {
