@@ -17,7 +17,6 @@ void rr(std::vector<Process> processes, int quantum) {
     std::vector<bool> inQueue(n, false);
     std::vector<GanttEntry> chart;
 
-    
     std::vector<int> order(n);
     for (int i = 0; i < n; ++i) order[i] = i;
     std::sort(order.begin(), order.end(), [&](int a, int b){
@@ -27,12 +26,10 @@ void rr(std::vector<Process> processes, int quantum) {
 
     int oi = 0, time = 0, completed = 0;
 
-   
     while (oi < n && processes[order[oi]].arrival <= time) { q.push(order[oi]); inQueue[order[oi]] = true; ++oi; }
 
     while (completed < n) {
         if (q.empty()) {
-            
             if (oi < n) time = processes[order[oi]].arrival;
             while (oi < n && processes[order[oi]].arrival <= time) { q.push(order[oi]); inQueue[order[oi]] = true; ++oi; }
             continue;
@@ -46,7 +43,6 @@ void rr(std::vector<Process> processes, int quantum) {
         processes[idx].remaining -= exec;
         chart.push_back({processes[idx].pid, start, time});
 
-       
         while (oi < n && processes[order[oi]].arrival <= time) {
             if (!inQueue[order[oi]] && processes[order[oi]].remaining > 0) {
                 q.push(order[oi]);
@@ -61,7 +57,7 @@ void rr(std::vector<Process> processes, int quantum) {
             processes[idx].waiting = processes[idx].turnaround - processes[idx].burst;
             ++completed;
         } else {
-            q.push(idx); 
+            q.push(idx);
         }
     }
 

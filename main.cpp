@@ -19,7 +19,6 @@ static void run_all_schedulers_for(const std::string &label, std::vector<Process
     std::cout << "\n";
     srt(processes);
     std::cout << "\n";
-    // default quantum 2 for RR when run in batch
     rr(processes, 2);
     std::cout << "\n";
     hrrn(processes);
@@ -28,7 +27,6 @@ static void run_all_schedulers_for(const std::string &label, std::vector<Process
 }
 
 int main(int argc, char** argv) {
-    // If a filename is provided, use it. If --all-tests given, iterate testcases/
     if (argc > 1) {
         std::string arg = argv[1];
         if (arg == "--all-tests") {
@@ -58,7 +56,6 @@ int main(int argc, char** argv) {
             }
 
             if (batch_mode) {
-                // Run all schedulers non-interactively for this file
                 run_all_schedulers_for(infile, processes);
                 return 0;
             }
@@ -104,7 +101,6 @@ int main(int argc, char** argv) {
         }
     }
 
-    // No args: use default interactive flow on input.txt
     std::vector<Process> processes = read_input("input.txt");
     if (processes.empty()) {
         std::cerr << "Error: no processes loaded. Check input.txt (remove non-data lines or add data).\n";

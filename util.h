@@ -15,4 +15,4 @@ std::vector<Process> read_input(const std::string &filename);
 void print_result(const std::vector<Process>& processes);
 void print_gantt(const std::vector<GanttEntry>& chart);
 
-#endif // UTIL_H
+#endif

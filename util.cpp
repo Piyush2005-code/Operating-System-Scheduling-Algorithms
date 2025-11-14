@@ -4,8 +4,6 @@
 #include <iomanip>
 #include <sstream>
 
-// Robust input reader: ignores blank lines and lines starting with '#'
-// Accepts lines with at least three integers: pid arrival burst
 std::vector<Process> read_input(const std::string &filename) {
     std::vector<Process> procs;
     std::ifstream file(filename);
@@ -16,10 +14,9 @@ std::vector<Process> read_input(const std::string &filename) {
 
     std::string line;
     while (std::getline(file, line)) {
-        // Trim leading spaces
         size_t pos = line.find_first_not_of(" \t\r\n");
-        if (pos == std::string::npos) continue; // blank
-        if (line[pos] == '#') continue;         // comment
+        if (pos == std::string::npos) continue;
+        if (line[pos] == '#') continue;
 
         std::istringstream iss(line);
         int id, a, b;
@@ -68,7 +65,6 @@ void print_result(const std::vector<Process>& p) {
     std::cout << "Avg Turnaround Time  : " << (total_tat / n) << "\n";
 }
 
-// Simple ASCII Gantt chart printer
 void print_gantt(const std::vector<GanttEntry>& chart) {
     if (chart.empty()) {
         std::cout << "Gantt: (no entries)\n";
@@ -80,17 +76,14 @@ void print_gantt(const std::vector<GanttEntry>& chart) {
     for (size_t i = 0; i < chart.size(); ++i) std::cout << "------+";
     std::cout << "\n|";
 
-    // Process labels centered roughly
     for (const auto &g : chart) {
         std::cout << "  P" << g.pid << "  |";
     }
     std::cout << "\n ";
 
-    // Bottom border
     for (size_t i = 0; i < chart.size(); ++i) std::cout << "------+";
     std::cout << "\n";
 
-    // Time markers: print start times then last end time
     for (const auto &g : chart) {
         std::cout << std::setw(3) << g.start << "   ";
     }

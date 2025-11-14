@@ -2,6 +2,16 @@
 scheduler
 *.o
 
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Electron build artifacts
+App/dist/
+
 # Editor and IDE files
 *.swp
 *.swo
@@ -15,3 +25,4 @@ Thumbs.db
 
 # CodeQL
 _codeql_detected_source_root
+

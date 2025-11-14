@@ -14,7 +14,7 @@ struct SRTItem {
 };
 struct SRTComp {
     bool operator()(const SRTItem &a, const SRTItem &b) const {
-        if (a.rem != b.rem) return a.rem > b.rem; 
+        if (a.rem != b.rem) return a.rem > b.rem;
         if (a.arrival != b.arrival) return a.arrival > b.arrival;
         return a.idx > b.idx;
     }
@@ -40,14 +40,12 @@ void srt(vector<Process> processes) {
     int lastStart = -1;
 
     while (completed < n) {
-     
         while (oi < n && processes[order[oi]].arrival <= time) {
             int idx = order[oi++];
             heap.push({processes[idx].remaining, processes[idx].arrival, idx});
         }
 
         if (heap.empty()) {
-           
             if (oi < n) time = processes[order[oi]].arrival;
             continue;
         }
@@ -55,7 +53,6 @@ void srt(vector<Process> processes) {
         SRTItem cur = heap.top(); heap.pop();
         int idx = cur.idx;
 
-    
         if (runningIdx != idx) {
             if (runningIdx != -1) {
                 chart.push_back({processes[runningIdx].pid, lastStart, time});
@@ -73,15 +70,12 @@ void srt(vector<Process> processes) {
         }
 
         if (processes[idx].remaining > 0) {
-       
             heap.push({processes[idx].remaining, processes[idx].arrival, idx});
         } else {
-           
             processes[idx].completion = time;
             processes[idx].turnaround = processes[idx].completion - processes[idx].arrival;
             processes[idx].waiting = processes[idx].turnaround - processes[idx].burst;
             ++completed;
-        
             chart.push_back({processes[idx].pid, lastStart, time});
             runningIdx = -1;
             lastStart = -1;

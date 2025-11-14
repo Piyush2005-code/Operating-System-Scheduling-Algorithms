@@ -15,7 +15,6 @@ function createWindow() {
 
     mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
-    // Open DevTools to debug
     mainWindow.webContents.openDevTools();
 
     mainWindow.webContents.on('crashed', () => {
@@ -45,7 +44,6 @@ app.on('activate', () => {
     }
 });
 
-// IPC handler for running scheduling algorithms
 ipcMain.handle('run-algorithm', (event, payload) => {
     try {
         console.log('IPC Handler - Running algorithm with payload:', payload);
@@ -54,10 +52,8 @@ ipcMain.handle('run-algorithm', (event, payload) => {
         if (!algorithm) throw new Error('Algorithm not specified');
         if (!processes || !Array.isArray(processes)) throw new Error('Processes is not an array');
 
-        // Normalize input: ensure numeric arrival/burst and string pid
         const normalized = processes.map((p: any, i: number) => ({ pid: String(p.pid ?? ('P' + (i + 1))), arrival: Number(p.arrival ?? 0), burst: Number(p.burst ?? 0) }));
 
-        // Call TS implementation (fallback to mock if algorithm not implemented)
         try {
             const result = runAlgorithm(algorithm, normalized, options);
             console.log('Algorithm result:', result);

@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// Main process config
 const mainConfig = {
     mode: 'development',
     entry: './src/main.ts',
@@ -30,7 +29,6 @@ const mainConfig = {
     },
 };
 
-// Preload script config
 const preloadConfig = {
     mode: 'development',
     entry: './src/preload.ts',
@@ -54,7 +52,6 @@ const preloadConfig = {
     devtool: 'source-map',
 };
 
-// Renderer process config
 const rendererConfig = {
     mode: 'development',
     entry: './src/renderer.tsx',

@@ -5,26 +5,23 @@
 #include <queue>
 
 void fcfs(std::vector<Process> processes) {
-    // Sort by arrival then pid
     std::sort(processes.begin(), processes.end(), [](const Process &a, const Process &b){
         if (a.arrival != b.arrival) return a.arrival < b.arrival;
         return a.pid < b.pid;
     });
 
     int n = (int)processes.size();
-    std::queue<int> q;                // queue of indices
+    std::queue<int> q;
     int time = 0, i = 0, completed = 0;
     std::vector<GanttEntry> chart;
 
     while (completed < n) {
-        // push arrivals into queue
         while (i < n && processes[i].arrival <= time) {
             q.push(i);
             ++i;
         }
 
         if (q.empty()) {
-            // no ready process, jump to next arrival
             if (i < n) time = processes[i].arrival;
             continue;
         }
