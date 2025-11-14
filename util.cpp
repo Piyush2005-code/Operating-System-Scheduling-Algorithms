@@ -71,7 +71,6 @@ void print_gantt(const std::vector<GanttEntry>& chart) {
         return;
     }
 
-    // Top border
     std::cout << " ";
     for (size_t i = 0; i < chart.size(); ++i) std::cout << "------+";
     std::cout << "\n|";

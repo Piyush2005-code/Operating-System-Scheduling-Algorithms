@@ -38,8 +38,6 @@ void fcfs(std::vector<Process> processes) {
         ++completed;
 
         chart.push_back({processes[idx].pid, start, end});
-
-        // any processes that arrived exactly at this time are queued by top of loop
     }
 
     std::cout << "\n--- FCFS Scheduling (queue) ---\n";
