@@ -2,14 +2,14 @@
 #define PROCESS_H
 
 struct Process {
-    int pid;            // Process ID
-    int arrival;        // Arrival time
-    int burst;          // Burst time
-    int remaining;      // Remaining time
-    int waiting;        // Waiting time
-    int turnaround;     // Turnaround time
-    int completion;     // Completion time
-    int priority;       // For feedback/aging (optional)
+    int pid;
+    int arrival;
+    int burst;
+    int remaining;
+    int waiting;
+    int turnaround;
+    int completion;
+    int priority;
 };
 
 #endif

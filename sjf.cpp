@@ -14,7 +14,7 @@ struct SJFItem {
 };
 struct SJFComp {
     bool operator()(const SJFItem &a, const SJFItem &b) const {
-        if (a.burst != b.burst) return a.burst > b.burst; 
+        if (a.burst != b.burst) return a.burst > b.burst;
         if (a.arrival != b.arrival) return a.arrival > b.arrival;
         return a.idx > b.idx;
     }
@@ -24,7 +24,6 @@ void sjf(vector<Process> processes) {
     int n = (int)processes.size();
     if (n == 0) {cout << "No processes.\n"; return; }
 
-    
     vector<int> order(n);
     for (int i = 0; i < n; ++i) order[i] = i;
     sort(order.begin(), order.end(), [&](int a, int b){
@@ -37,14 +36,12 @@ void sjf(vector<Process> processes) {
     vector<GanttEntry> chart;
 
     while (completed < n) {
-    
         while (oi < n && processes[order[oi]].arrival <= time) {
             int idx = order[oi++];
             heap.push({processes[idx].burst, processes[idx].arrival, idx});
         }
 
         if (heap.empty()) {
-           
             if (oi < n) time = processes[order[oi]].arrival;
             continue;
         }

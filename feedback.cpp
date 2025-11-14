@@ -11,10 +11,9 @@ void feedback(std::vector<Process> processes) {
     if(n==0) { std::cout << "No processes.\n"; return; }
 
     for(auto &p : processes) p.remaining = p.burst;
-    
     std::vector<std::queue<int>> q(3);
     std::vector<bool> inQueue(n, false);
-    const int tq0 = 2, tq1 = 4; 
+    const int tq0 = 2, tq1 = 4;
 
     std::vector<int> order(n);
     for(int i =0; i< n; ++i) order[i] = i;

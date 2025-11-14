@@ -36,7 +36,6 @@ export function sjf(processes: ProcInput[]) {
     while (oi < n && ps[order[oi]].arrival <= time) {
       heap.push(order[oi++]);
     }
-    // sort heap by burst ascending
     heap.sort((a, b) => ps[a].burst - ps[b].burst || ps[a].arrival - ps[b].arrival);
   };
 
@@ -117,7 +116,6 @@ export function hrrn(processes: ProcInput[]) {
   const done = new Array(n).fill(false);
 
   while (completed < n) {
-    // find ready processes
     const candidates: number[] = [];
     for (let i = 0; i < n; i++) {
       if (!done[i] && ps[i].arrival <= time) candidates.push(i);
@@ -126,7 +124,6 @@ export function hrrn(processes: ProcInput[]) {
       time++;
       continue;
     }
-    // compute response ratio
     let best = candidates[0];
     let bestRatio = (time - ps[best].arrival + ps[best].burst) / ps[best].burst;
     for (let idx of candidates) {
@@ -174,7 +171,6 @@ export function srt(processes: ProcInput[]) {
     const idx = heap.shift()!;
     const p = ps[idx];
     const start = Math.max(time, p.arrival);
-    // run for 1 unit (simulate preemption check per time unit)
     const runUntil = start + 1;
     time = runUntil;
     remaining[idx] -= 1;
@@ -185,9 +181,7 @@ export function srt(processes: ProcInput[]) {
       p.waiting = p.turnaround - p.burst;
       completed++;
     }
-    // push any newly arrived
     pushArrived();
-    // if still remaining, put back into heap
     if (remaining[idx] > 0) heap.push(idx);
   }
 
@@ -201,7 +195,7 @@ export function runAlgorithm(name: string, processes: ProcInput[], options?: any
     case 'rr': return rr(processes, options?.quantum || 2);
     case 'hrrn': return hrrn(processes);
     case 'srt': return srt(processes);
-    case 'mlfq': // fallback to RR-like behavior for now
+    case 'mlfq':
       return rr(processes, options?.quantum || 4);
     default:
       throw new Error('Unknown algorithm: ' + name);

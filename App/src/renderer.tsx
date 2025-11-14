@@ -5,7 +5,6 @@ import ProcessInput from './components/ProcessInput';
 import ResultDisplay from './components/ResultDisplay';
 import './styles/main.css';
 
-// Declare the window API exposed by preload
 declare const window: any;
 
 const App = () => {
