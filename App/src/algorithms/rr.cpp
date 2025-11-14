@@ -12,13 +12,12 @@ void rr(std::vector<Process> processes, int quantum) {
     int time = 0, completed = 0;
     std::vector<GanttEntry> chart;
 
-    // Initialize remaining burst times
     std::vector<int> remaining_burst(n);
     for (int i = 0; i < n; ++i) {
         remaining_burst[i] = processes[i].burst;
     }
 
-    queue.push(0); // Start with the first process
+    queue.push(0);
 
     while (!queue.empty()) {
         int idx = queue.front(); queue.pop();
@@ -29,7 +28,6 @@ void rr(std::vector<Process> processes, int quantum) {
             time += time_slice;
             remaining_burst[idx] -= time_slice;
 
-            // Record Gantt chart entry
             chart.push_back({processes[idx].pid, start, time});
 
             if (remaining_burst[idx] == 0) {
@@ -38,10 +36,9 @@ void rr(std::vector<Process> processes, int quantum) {
                 processes[idx].waiting = processes[idx].turnaround - processes[idx].burst;
                 ++completed;
             } else {
-                queue.push(idx); // Re-add process to the queue
+                queue.push(idx);
             }
 
-            // Push newly arrived processes into the queue
             for (int i = 0; i < n; ++i) {
                 if (processes[i].arrival <= time && remaining_burst[i] > 0 && i != idx) {
                     queue.push(i);
