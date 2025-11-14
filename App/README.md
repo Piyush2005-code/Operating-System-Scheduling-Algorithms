@@ -12,7 +12,7 @@ This Electron application implements various CPU scheduling algorithms, allowing
 ## Project Structure
 
 ```
-scheduling-algorithms-app
+App
 ├── src
 │   ├── main.ts                # Main entry point of the Electron application
 │   ├── preload.ts             # Preload script for exposing APIs to the renderer
@@ -52,7 +52,7 @@ scheduling-algorithms-app
 
    ## Where you are
 
-   Project folder: `App/scheduling-algorithms-app`
+   Project folder: `App`
 
    Key files:
    - `src/main.ts` — Electron main process (creates BrowserWindow, sets preload).
@@ -85,7 +85,7 @@ scheduling-algorithms-app
    From the app folder:
 
    ```bash
-   cd App/scheduling-algorithms-app
+   cd App
    npm install
    ```
 
