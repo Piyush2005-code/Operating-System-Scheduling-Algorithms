@@ -1,0 +1,288 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+#root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.app {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    width: 100%;
+}
+
+h1 {
+    margin: 0 0 30px 0;
+    color: #333;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+h2 {
+    color: #333;
+    font-size: 18px;
+    margin: 20px 0 15px 0;
+    font-weight: 600;
+}
+
+.algorithm-selector {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f5f7fa;
+    border-radius: 8px;
+    border-left: 5px solid #667eea;
+}
+
+.algorithm-selector h2 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+}
+
+.algorithm-selector select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #667eea;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: white;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.algorithm-selector select:hover {
+    border-color: #764ba2;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.algorithm-selector select:focus {
+    outline: none;
+    border-color: #764ba2;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.process-input {
+    background: #f5f7fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border-left: 5px solid #4CAF50;
+}
+
+.process-input h2 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+}
+
+.process-input form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.process-input div {
+    display: flex;
+    flex-direction: column;
+}
+
+.process-input label {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+}
+
+.process-input input {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.process-input input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+.process-input button {
+    margin-top: 12px;
+    padding: 12px 15px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.process-input button:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.process-input button:active {
+    transform: translateY(0);
+}
+
+.app > div > p {
+    font-size: 15px;
+    color: #666;
+    font-weight: 500;
+    margin: 15px 0 10px 0;
+}
+
+.app ul {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    border: 2px solid #e0e0e0;
+    margin: 10px 0;
+    list-style: none;
+}
+
+.app li {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f0f0f0;
+    background: #fafafa;
+    margin: 5px 0;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #555;
+}
+
+.app li:last-child {
+    border-bottom: none;
+}
+
+.app > button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 25px;
+    width: 100%;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.app > button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.app > button:active:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.app > button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+}
+
+.result-display {
+    margin-top: 30px;
+    background: #f5f7fa;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 5px solid #2196F3;
+}
+
+.result-display h2 {
+    margin: 0 0 20px 0;
+    color: #333;
+}
+
+.result-display table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.result-display th,
+.result-display td {
+    padding: 13px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
+}
+
+.result-display th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 700;
+}
+
+.result-display tr:hover {
+    background: #f9f9f9;
+}
+
+.gantt-chart {
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    margin-top: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gantt-entry {
+    padding: 12px 15px;
+    margin: 10px 0;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    display: inline-block;
+    min-width: 200px;
+    box-shadow: 0 3px 8px rgba(76, 175, 80, 0.3);
+    transition: all 0.3s ease;
+}
+
+.gantt-entry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(76, 175, 80, 0.4);
+}
+
+p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+select:focus,
+input:focus,
+button:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
