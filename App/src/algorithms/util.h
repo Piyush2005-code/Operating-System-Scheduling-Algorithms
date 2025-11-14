@@ -5,18 +5,18 @@
 #include <iostream>
 
 struct Process {
-    int pid; // Process ID
-    int arrival; // Arrival time
-    int burst; // Burst time
-    int completion; // Completion time
-    int turnaround; // Turnaround time
-    int waiting; // Waiting time
+    int pid;
+    int arrival;
+    int burst;
+    int completion;
+    int turnaround;
+    int waiting;
 };
 
 struct GanttEntry {
-    int pid; // Process ID
-    int start; // Start time
-    int end; // End time
+    int pid;
+    int start;
+    int end;
 };
 
 void print_result(const std::vector<Process>& processes) {
@@ -39,4 +39,4 @@ void print_gantt(const std::vector<GanttEntry>& chart) {
     std::cout << "\n";
 }
 
-#endif // UTIL_H
+#endif
